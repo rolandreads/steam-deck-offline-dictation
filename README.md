@@ -69,7 +69,7 @@ After that, connect over Tailscale SSH as `deck` or `root`.
 ### 2. Copy This Repo To The Deck
 
 ```sh
-git clone https://github.com/rolandmarg/steam-deck-offline-dictation.git ~/steam-deck-offline-dictation
+git clone https://github.com/rolandreads/steam-deck-offline-dictation.git ~/steam-deck-offline-dictation
 cd ~/steam-deck-offline-dictation
 ```
 
