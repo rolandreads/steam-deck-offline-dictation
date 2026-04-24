@@ -6,10 +6,9 @@ After=systemd-user-sessions.service
 Type=simple
 Environment=SUDO_USER=deck
 Environment=XDG_RUNTIME_DIR=/run/user/1000
-ExecStart=/home/deck/bin/deck-dictate-l4-warm
+ExecStart=/opt/deck-dictate/hold_l4_warm.py
 Restart=always
 RestartSec=2
 
 [Install]
 WantedBy=multi-user.target
-

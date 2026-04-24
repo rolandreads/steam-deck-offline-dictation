@@ -98,7 +98,7 @@ def main():
         return 1
 
     user_home = deck_home()
-    root = user_home / 'src/deck-dictate'
+    root = Path('/opt/deck-dictate')
     runtime = Path('/run/user/1000/deck-dictate')
     runtime.mkdir(parents=True, exist_ok=True)
     output_file = runtime / 'last_transcription.txt'
@@ -171,4 +171,3 @@ def main():
 
 if __name__ == '__main__':
     raise SystemExit(main())
-

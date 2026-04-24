@@ -82,6 +82,7 @@ sudo ./install.sh
 The installer:
 
 - creates `/home/deck/src/deck-dictate`
+- creates `/opt/deck-dictate` for root-owned helper scripts
 - installs the helper scripts
 - downloads and verifies the voxtype Vulkan binary
 - downloads the Whisper `base.en` model
@@ -123,8 +124,8 @@ Internal periods are preserved.
 
 ```text
 /home/deck/src/deck-dictate/deck-dictate-daemon
-/home/deck/src/deck-dictate/hold_l4_warm.py
-/home/deck/src/deck-dictate/uinput_type.py
+/opt/deck-dictate/hold_l4_warm.py
+/opt/deck-dictate/uinput_type.py
 /home/deck/.local/deck-dictate/bin/voxtype
 /home/deck/.local/share/deck-dictate/models/ggml-base.en.bin
 /home/deck/.config/systemd/user/deck-dictate.service
@@ -154,5 +155,5 @@ If the hidraw node changed, the bridge should autodetect it by Steam Deck contro
 - This avoids Decky plugins entirely.
 - Dictation is offline after install.
 - The root service is small, but it is still root because it reads `hidraw` and writes `/dev/uinput`.
+- Root-executed helper scripts are installed under `/opt/deck-dictate` as `root:root` so the normal `deck` user cannot edit code that systemd later runs as root.
 - Do not run unreviewed scripts as root. Read `install.sh` first.
-

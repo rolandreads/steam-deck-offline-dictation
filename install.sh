@@ -18,18 +18,18 @@ repo_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 src_dir="${DECK_HOME}/src/deck-dictate"
 bin_dir="${DECK_HOME}/.local/deck-dictate/bin"
 model_dir="${DECK_HOME}/.local/share/deck-dictate/models"
+root_dir="/opt/deck-dictate"
 voxtype_url="https://github.com/peteonrails/voxtype/releases/download/v0.6.6/voxtype-0.6.6-linux-x86_64-vulkan"
 sums_url="https://github.com/peteonrails/voxtype/releases/download/v0.6.6/SHA256SUMS"
 model_url="https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin"
 model_sha256="a03779c86df3323075f5e796cb2ce5029f00ec8869eee3fdfb897afe36c6d002"
 
-install -d -o "${DECK_USER}" -g "${DECK_USER}" "${src_dir}" "${bin_dir}" "${model_dir}" "${DECK_HOME}/bin"
-install -m 0755 -o "${DECK_USER}" -g "${DECK_USER}" "${repo_dir}/scripts/uinput_type.py" "${src_dir}/uinput_type.py"
-install -m 0755 -o "${DECK_USER}" -g "${DECK_USER}" "${repo_dir}/scripts/hold_l4_warm.py" "${src_dir}/hold_l4_warm.py"
+install -d -o "${DECK_USER}" -g "${DECK_USER}" "${src_dir}" "${bin_dir}" "${model_dir}"
+install -d -o root -g root "${root_dir}"
+install -m 0755 -o root -g root "${repo_dir}/scripts/uinput_type.py" "${root_dir}/uinput_type.py"
+install -m 0755 -o root -g root "${repo_dir}/scripts/hold_l4_warm.py" "${root_dir}/hold_l4_warm.py"
 install -m 0755 -o "${DECK_USER}" -g "${DECK_USER}" "${repo_dir}/scripts/deck-dictate-daemon" "${src_dir}/deck-dictate-daemon"
 install -m 0644 -o "${DECK_USER}" -g "${DECK_USER}" "${repo_dir}/config.toml" "${src_dir}/config.toml"
-
-ln -sfn "${src_dir}/hold_l4_warm.py" "${DECK_HOME}/bin/deck-dictate-l4-warm"
 
 tmp=$(mktemp -d)
 trap 'rm -rf "${tmp}"' EXIT
