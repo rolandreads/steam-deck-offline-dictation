@@ -1,0 +1,20 @@
+[hotkey]
+key = "SCROLLLOCK"
+
+[audio]
+device = "default"
+sample_rate = 16000
+max_duration_secs = 30
+
+[whisper]
+model = "base.en"
+language = "en"
+threads = 6
+
+[output]
+mode = "file"
+file_path = "/run/user/1000/deck-dictate/last_transcription.txt"
+file_mode = "overwrite"
+
+[integration]
+state_file = "/run/user/1000/deck-dictate/state"

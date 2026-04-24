@@ -1,0 +1,15 @@
+[Unit]
+Description=Warm local dictation daemon
+After=pipewire.service pipewire-pulse.service
+
+[Service]
+Type=simple
+Environment=HOME=/home/deck
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+ExecStart=/home/deck/src/deck-dictate/deck-dictate-daemon
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target
+

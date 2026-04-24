@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export HOME=/home/deck
+export XDG_RUNTIME_DIR=/run/user/1000
+export VOXTYPE_VULKAN_DEVICE=amd
+
+runtime="$XDG_RUNTIME_DIR/deck-dictate"
+mkdir -p "$runtime" "$HOME/.local/share/voxtype/models"
+ln -sfn "$HOME/.local/share/deck-dictate/models/ggml-base.en.bin" "$HOME/.local/share/voxtype/models/ggml-base.en.bin"
+
+exec "$HOME/.local/deck-dictate/bin/voxtype" \
+  --config "$HOME/src/deck-dictate/config.toml" \
+  --no-hotkey \
+  --threads 6 \
+  --flash-attention \
+  --vad \
+  --vad-backend energy \
+  --vad-threshold 0.45 \
+  --vad-min-speech-ms 200 \
+  --file-path "$runtime/last_transcription.txt" \
+  --file-mode overwrite \
+  daemon
+

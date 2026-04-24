@@ -1,0 +1,15 @@
+[Unit]
+Description=L4 hold-to-talk dictation bridge
+After=systemd-user-sessions.service
+
+[Service]
+Type=simple
+Environment=SUDO_USER=deck
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+ExecStart=/home/deck/bin/deck-dictate-l4-warm
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
+
